@@ -6,13 +6,20 @@ const Countries = function (url) {
   this.countries = [];
 }
 
+Countries.prototype.bindEvents = function () {
+  PubSub.subscribe('country:selected-country', (event) => {
+    const selectedCountry = this.countries[event.detail];
+    PubSub.publish('selection:country-object', selectedCountry);
+  })
+
+};
+
 Countries.prototype.getData = function () {
   const url = this.url;
   const request = new Request(url);
   const handleRequest = (responseData) => {
     this.countries = responseData;
     PubSub.publish('Countries:data-ready', this.countries);
-    console.log(this.countries);
   }
 
   request.fetchData()
