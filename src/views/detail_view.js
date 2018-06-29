@@ -12,10 +12,10 @@ DetailView.prototype.bindEvents = function () {
 };
 
 DetailView.prototype.render = function (country) {
-  const countryName = this.createNewElement('h1', country.name);
-  const countryCapital = this.createNewElement('h2', country.capital);
-  const countryRegion = this.createNewElement('h2', country.region);
-  const countryPopulation = this.createNewElement('h2', country.population);
+  const countryName = this.createNewElement('h1', `The country's name is: ` + country.name);
+  const countryCapital = this.createNewElement('h2', country.name + `'s capital is ` + country.capital);
+  const countryRegion = this.createNewElement('h2', country.name + ` is in: ` + country.region);
+  const countryPopulation = this.createNewElement('h2', country.name + `'s population is: ` + country.population);
 }
 
 DetailView.prototype.createNewElement = function (elementType, text) {
