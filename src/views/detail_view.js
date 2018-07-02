@@ -7,6 +7,7 @@ const DetailView = function (container) {
 DetailView.prototype.bindEvents = function () {
   PubSub.subscribe('selection:country-object', (event) => {
     const country = event.detail;
+    console.log(country);
     this.render(country);
   })
 };

@@ -6,14 +6,6 @@ const Countries = function (url) {
   this.countries = [];
 }
 
-Countries.prototype.bindEvents = function () {
-  PubSub.subscribe('country:selected-country', (event) => {
-    const selectedCountry = this.countries[event.detail];
-    PubSub.publish('selection:country-object', selectedCountry);
-  })
-
-};
-
 Countries.prototype.getData = function () {
   const url = this.url;
   const request = new Request(url);
@@ -25,6 +17,14 @@ Countries.prototype.getData = function () {
   request.fetchData()
     .then(handleRequest)
     .catch(error => console.error(error));
+};
+
+Countries.prototype.bindEvents = function () {
+  PubSub.subscribe('country:selected-country', (event) => {
+    const selectedCountry = this.countries[event.detail];
+    PubSub.publish('selection:country-object', selectedCountry);
+  })
+
 };
 
 module.exports = Countries;

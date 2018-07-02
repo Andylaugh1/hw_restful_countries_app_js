@@ -1,8 +1,9 @@
 const PubSub = require('../helpers/pub_sub.js');
 const Countries = require('../models/countries.js');
 
-const SelectView = function (element) {
-  this.element = element;
+const SelectView = function (selectElement, filterElement) {
+  this.selectElement = selectElement;
+  this.filterElement = filterElement;
   console.log(this.element);
 };
 
@@ -12,7 +13,7 @@ SelectView.prototype.bindEvents = function () {
     this.populate(countriesData);
   });
 
-  this.element.addEventListener('change',  (event) => {
+  this.selectElement.addEventListener('change',  (event) => {
     const selectedIndex = event.target.value;
     PubSub.publish('country:selected-country', selectedIndex);
   })
@@ -23,7 +24,7 @@ SelectView.prototype.populate = function (countriesData) {
     const option = document.createElement('option');
     option.textContent = country.name;
     option.value = index;
-    this.element.appendChild(option);
+    this.selectElement.appendChild(option);
   });
 };
 

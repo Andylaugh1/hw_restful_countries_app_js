@@ -10,7 +10,8 @@ document.addEventListener('DOMContentLoaded', () => {
   countries.bindEvents();
 
   const element = document.querySelector('select#countries-list');
-  const selectView = new SelectView(element);
+  const element1 = document.querySelector('input#region-filter');
+  const selectView = new SelectView(element, element1);
   selectView.bindEvents();
 
 
